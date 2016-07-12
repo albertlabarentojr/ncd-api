@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "noImplicitAny": false,
+        "sourceMap": false
+    },
+    "exclude": [
+        "node_modules"
+    ],
+    "files" : [
+        "./server.ts",
+        "./app/auth/Authenticate.ts",
+        "./app/auth/JwtAuth.ts",
+        "./app/models/MedicalRecord.ts",
+        "./app/models/Inhabitant.ts",
+        "./app/base/BaseModel.ts",
+        "./app/models/User.ts",
+        "./app/routes/v1/Api.ts",
+        "./app/routes/v1/ApiController.ts"
+    ]
+}
