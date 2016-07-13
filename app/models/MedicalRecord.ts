@@ -11,9 +11,8 @@ module App.Models {
         }
 
         schema() {
-            let ObjectID = this.mongoose.Schema.Types.ObjectId;
+            let ObjectId = this.mongoose.Schema.Types.ObjectId;
             let MedicalRecordShema = new this.mongoose.Schema({
-                medical_record_id : ObjectID,                
                 with_diabetes : [String],
                 with_diabetes_year : String,
                 with_diabetes_medical_intakes : String,
@@ -80,7 +79,11 @@ module App.Models {
                 is_smoking_method_stop_attempt : String,
                 is_smoking_type_tobacco : String,
                 is_smoking_house_member : String,
-                inhabitant_id : {type : String, required : true},
+                inhabitant_id : ObjectId,
+                inhabitants : {type : ObjectId, ref : 'Inhabitant'},
+                medical_record_id : ObjectId
+            }, {
+                timestamps : true
             });
 
             MedicalRecordShema.set('toJSON', {

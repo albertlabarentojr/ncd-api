@@ -35,6 +35,8 @@ module App.Models {
                 city : String,
                 medical_records : {type : ObjectId, ref : 'MedicalRecord'},
                 inhabitant_id : ObjectId
+            }, {
+                timestamps : true
             });
 
             InhabitantSchema.set('toJSON', {

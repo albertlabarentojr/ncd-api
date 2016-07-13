@@ -16,9 +16,8 @@ var App;
                 _super.call(this, require('node-restful'));
             }
             MedicalRecord.prototype.schema = function () {
-                var ObjectID = this.mongoose.Schema.Types.ObjectId;
+                var ObjectId = this.mongoose.Schema.Types.ObjectId;
                 var MedicalRecordShema = new this.mongoose.Schema({
-                    medical_record_id: ObjectID,
                     with_diabetes: [String],
                     with_diabetes_year: String,
                     with_diabetes_medical_intakes: String,
@@ -85,7 +84,11 @@ var App;
                     is_smoking_method_stop_attempt: String,
                     is_smoking_type_tobacco: String,
                     is_smoking_house_member: String,
-                    inhabitant_id: { type: String, required: true },
+                    inhabitant_id: ObjectId,
+                    inhabitants: { type: ObjectId, ref: 'Inhabitant' },
+                    medical_record_id: ObjectId
+                }, {
+                    timestamps: true
                 });
                 MedicalRecordShema.set('toJSON', {
                     transform: function (doc, ret, options) {

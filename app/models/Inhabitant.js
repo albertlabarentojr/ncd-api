@@ -37,6 +37,8 @@ var App;
                     city: String,
                     medical_records: { type: ObjectId, ref: 'MedicalRecord' },
                     inhabitant_id: ObjectId
+                }, {
+                    timestamps: true
                 });
                 InhabitantSchema.set('toJSON', {
                     transform: function (doc, ret, options) {
