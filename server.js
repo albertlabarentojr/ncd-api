@@ -15,7 +15,7 @@ var App;
                 this.app = this.server();
                 this.controller = require('./app/routes/v1/ApiController');
                 this.database = function () {
-                    _this.mongoose.connect('mongodb://127.0.0.1:27017/test');
+                    _this.mongoose.connect('mongodb://192.168.10.11:27017/test');
                 };
                 this.parser = function () {
                     _this.app.use(_this.bodyParser.urlencoded({ extended: true }));
