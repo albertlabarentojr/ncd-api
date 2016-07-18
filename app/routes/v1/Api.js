@@ -1,6 +1,7 @@
 /// <reference path="../../../typings/tsd.d.ts" />
 /// <reference path="../../models/Inhabitant.ts" />
 "use strict";
+var url = require('url');
 var Inhabitant_1 = require('../../models/Inhabitant');
 var MedicalRecord_1 = require('../../models/MedicalRecord');
 var App;
@@ -18,18 +19,24 @@ var App;
                     this.MedicalRecord = MedicalRecord_1.MedicalRecord;
                     this.MedicalRecord.methods(['get', 'put', 'post', 'delete']);
                     this.MedicalRecord.before('delete', function (req, res, next) {
-                        _this.MedicalRecord.find({})
+                        var query = url.parse(req.url, true).query;
+                        _this.MedicalRecord.find({ inhabitant_id: query.inhabitant_id })
                             .sort({ date: 'desc' })
                             .exec(function (err, docs) {
                             var updatedMedicalRecord = {};
-                            if (docs.length > 1) {
-                                var latestMRecID = docs[0].medical_record_id;
-                                console.log(docs);
+                            if (docs.length >= 0) {
+                                var indexmr = 0;
+                                if (docs.length == 1) {
+                                    indexmr = 0;
+                                }
+                                else if (docs.length > 1) {
+                                    indexmr = 1;
+                                }
+                                var latestMRecID = docs[indexmr]._id;
                                 updatedMedicalRecord = { medical_records: latestMRecID, medical_record_id: latestMRecID };
                             }
                             else {
                                 updatedMedicalRecord = { medical_records: null, medical_record_id: null };
-                                console.log('no latest');
                             }
                             _this.Inhabitant.update({ inhabitant_id: docs.inhabitant_id }, { $set: updatedMedicalRecord }, {}, function (err, numAffected) {
                                 next();
