@@ -84,6 +84,10 @@ var App;
                     is_smoking_method_stop_attempt: String,
                     is_smoking_type_tobacco: String,
                     is_smoking_house_member: String,
+                    ncdradf_date_assessed: Date,
+                    ncdradf_date_followup: Date,
+                    stop_smoking_program_date_assessed: Date,
+                    stop_smoking_program_date_followup: Date,
                     inhabitant_id: ObjectId,
                     inhabitants: { type: ObjectId, ref: 'Inhabitant' },
                     medical_record_id: ObjectId
