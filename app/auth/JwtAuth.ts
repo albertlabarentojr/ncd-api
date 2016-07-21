@@ -28,14 +28,9 @@ module App.Auth {
                         if (decoded.exp <= Date.now()) {
                             res.end('Access token has expired', '400');
                         }
-                        
-                    this.User.findOne({ _id: decoded.iss }, function(err, user) {
-                            req.user = user;
-                        });
-                        
                         next();
                     } catch (err) {
-                        res.end('Unauthorize');
+                        res.end('Unauthorize FIrst');
                         next();
                     }
                 } else {

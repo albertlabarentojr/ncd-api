@@ -48,7 +48,7 @@ module App.Routes.V1 {
             });
 
             this.app.get('/protected', [this.jwtauth], function(req, res) {
-                res.send('Authorize to access endpoint');
+                res.send('Authorized to access endpoint');
             });
         }
     }

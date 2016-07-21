@@ -7,6 +7,7 @@ import * as express from 'express';
 import * as url from 'url';
 import { Inhabitant } from '../../models/Inhabitant';
 import { MedicalRecord } from '../../models/MedicalRecord';
+import { JwtAuth } from '../../auth/JwtAuth';
 
 module App.Routes.V1 {
 
