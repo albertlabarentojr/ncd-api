@@ -18,6 +18,9 @@ module App.Init {
         app = this.server();
 
         controller = require('./app/routes/v1/ApiController');
+
+        mongooseOptions = { server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } }, 
+                            replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 30000 } } };
        
         constructor() {
             this.database();
@@ -33,7 +36,7 @@ module App.Init {
         }
 
        database = () => {
-           this.mongoose.connect('mongodb://192.168.10.11:27017/test');
+           this.mongoose.connect('mongodb://ncdadmin:qweasdzxc@ds145295.mlab.com:45295/ncd_db', this.mongooseOptions);
        }
 
        parser = () => {

@@ -14,8 +14,10 @@ var App;
                 this.jwt = require('jwt-simple');
                 this.app = this.server();
                 this.controller = require('./app/routes/v1/ApiController');
+                this.mongooseOptions = { server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } },
+                    replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } } };
                 this.database = function () {
-                    _this.mongoose.connect('mongodb://192.168.10.11:27017/test');
+                    _this.mongoose.connect('mongodb://ncdadmin:qweasdzxc@ds145295.mlab.com:45295/ncd_db', _this.mongooseOptions);
                 };
                 this.parser = function () {
                     _this.app.use(_this.bodyParser.urlencoded({ extended: true }));
